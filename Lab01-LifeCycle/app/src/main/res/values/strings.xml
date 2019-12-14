@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LifeCycle</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_activity_2">Open 2nd Activity</string>
+</resources>
