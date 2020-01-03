@@ -102,4 +102,5 @@
          
         <item>603410321-2</item>
     </string-array>
+    <string name="title_activity_todolist">TodolistActivity</string>
 </resources>

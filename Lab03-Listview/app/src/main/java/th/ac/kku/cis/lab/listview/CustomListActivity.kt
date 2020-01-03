@@ -1,5 +1,6 @@
 package th.ac.kku.cis.lab.listview
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
@@ -37,6 +38,15 @@ class CustomListActivity : AppCompatActivity() {
 
             if (position==0){
                 Toast.makeText(this, "Item One",   Toast.LENGTH_SHORT).show()
+                //val intent = Intent(this@CustomListActivity,ProfileActivity::class.java)
+                //intent.putExtra("Username","John Doe")
+                //startActivity(intent)
+
+                //get data from intent
+//                val intent = intent
+//                val name = intent.getStringExtra("Name")
+//                val email = intent.getStringExtra("Email")
+//                val phone = intent.getStringExtra("Phone")
             }
             if (position==1){
                 Toast.makeText(this, "Item Two",   Toast.LENGTH_SHORT).show()

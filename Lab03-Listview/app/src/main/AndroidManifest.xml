@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CustomListActivity"></activity>
+        <activity android:name=".todoActivity"></activity>
+        <activity
+            android:name=".TodolistActivity"
+            android:label="@string/title_activity_todolist"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CustomListActivity" />
         <activity android:name=".Main2Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

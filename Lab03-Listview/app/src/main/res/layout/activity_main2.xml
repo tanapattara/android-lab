@@ -20,4 +20,11 @@
         android:layout_height="wrap_content"
         android:text="Custom Listview"
         android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Todo Application"
+        android:layout_weight="1"/>
 </LinearLayout>
