@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         mListView.setOnItemClickListener { parent, view, position, id ->
 
             val selectedItem = parent.getItemAtPosition(position) as String
-
             Toast.makeText(this,selectedItem,Toast.LENGTH_SHORT).show()
             //val intent = Intent(this, BookDetailActivity::class.java)
             //startActivity(intent)

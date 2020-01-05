@@ -19,8 +19,8 @@ class Main2Activity : AppCompatActivity() {
             val intent = Intent(this, CustomListActivity::class.java)
             startActivity(intent)
         }
-        button2.setOnClickListener {
-            val intent = Intent(this, TodolistActivity::class.java)
+        button3.setOnClickListener {
+            val intent = Intent(this, TaskActivity::class.java)
             startActivity(intent)
         }
     }

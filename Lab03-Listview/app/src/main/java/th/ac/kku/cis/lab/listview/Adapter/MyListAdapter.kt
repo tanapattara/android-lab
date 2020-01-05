@@ -1,4 +1,4 @@
-package th.ac.kku.cis.lab.listview
+package th.ac.kku.cis.lab.listview.Adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import th.ac.kku.cis.lab.listview.Model.Student
+import th.ac.kku.cis.lab.listview.R
 
 
 public class MyListAdapter(var mCtx: Context, var resource:Int, var items:List<Student>)
