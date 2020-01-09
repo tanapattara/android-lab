@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">RecycleViewApplication</string>
+    <string name="api_key">ORNeWUAvklE4xvafVszIaMJKfwRJR7a4QSq2Q3Ah</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="change_layout_manager">Change Layout</string>
 </resources>
