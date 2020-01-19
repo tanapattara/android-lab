@@ -16,19 +16,39 @@ class DBHelper (context: Context, factory: SQLiteDatabase.CursorFactory?) : SQLi
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME)
         onCreate(db)
     }
-    fun addTask(task: Task) {
+    fun addTask(task: Task): Long {
         val values = ContentValues()
 
         values.put(COLUMN_NAME, task.name)
 
         val db = this.writableDatabase
 
-        db.insert(TABLE_NAME, null, values)
+        val result = db.insert(TABLE_NAME, null, values)
         db.close()
+
+        return result
     }
     fun getAllTask(): Cursor? {
         val db = this.readableDatabase
         return db.rawQuery("SELECT * FROM $TABLE_NAME", null)
+    }
+    fun deleteTask(id:Int): Int {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(COLUMN_ID, id)
+        val success = db.delete(TABLE_NAME,COLUMN_ID + "=" + id,null)
+        db.close()
+        return success
+    }
+    fun updateTask(task: Task):Int{
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(COLUMN_ID, task.id)
+        contentValues.put(COLUMN_NAME, task.name)
+
+        val success = db.update(TABLE_NAME, contentValues,COLUMN_ID+"="+task.id,null)
+        db.close()
+        return success
     }
     companion object {
         private val DATABASE_VERSION = 1

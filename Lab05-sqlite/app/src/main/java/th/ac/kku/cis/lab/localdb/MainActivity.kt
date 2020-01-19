@@ -22,13 +22,32 @@ class MainActivity : AppCompatActivity() {
             tvDisplayName.text = ""
             val dbHandler = DBHelper(this, null)
             val cursor = dbHandler.getAllTask()
+
             cursor!!.moveToFirst()
-            tvDisplayName.append((cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_NAME))))
-            while (cursor.moveToNext()) {
-                tvDisplayName.append((cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_NAME))))
+
+            do {
+                val id = (cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_ID)))
+                val name = (cursor.getString(cursor.getColumnIndex(DBHelper.COLUMN_NAME)))
+                tvDisplayName.append( id + "). "+ name)
                 tvDisplayName.append("\n")
-            }
-            cursor.close()
+            }while (cursor.moveToNext())
+        cursor.close()
+        }
+
+        btnDelete.setOnClickListener {
+            //read id
+            val input = etEdit.text.toString()
+            val dbHandler = DBHelper(this, null)
+            val result = dbHandler.deleteTask(input.toInt())
+        }
+        btnEdit.setOnClickListener {
+            //read id
+            val input = etEdit.text.toString()
+            val parts = input.split(" ")
+            val task = Task(parts[0].toInt(),parts[1])
+
+            val dbHandler = DBHelper(this, null)
+            val result = dbHandler.updateTask(task)
         }
     }
 }
