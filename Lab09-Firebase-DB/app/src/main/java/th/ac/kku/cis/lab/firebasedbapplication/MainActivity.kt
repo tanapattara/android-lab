@@ -7,11 +7,10 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.Toast
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
-
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity(), ItemRowListener {
 
@@ -36,6 +35,10 @@ class MainActivity : AppCompatActivity(), ItemRowListener {
             addNewItemDialog()
         }
 
+        refreshListview()
+    }
+
+    private fun refreshListview(){
         mDatabase = FirebaseDatabase.getInstance().reference
         toDoItemList = mutableListOf<ToDo>()
         adapter = ToDoItemAdapter(this, toDoItemList!!)
@@ -105,6 +108,9 @@ class MainActivity : AppCompatActivity(), ItemRowListener {
             // display data to user
             Toast.makeText(this,
                 "Item saved with ID " + todoItem.objectId, Toast.LENGTH_SHORT).show()
+
+            //refresh listview
+            refreshListview()
         }
         alert.show()
     }
@@ -114,6 +120,8 @@ class MainActivity : AppCompatActivity(), ItemRowListener {
         val itemReference = mDatabase.child("todo_item").child(itemObjectId)
         //set new value
         itemReference.child("done").setValue(isDone);
+
+        refreshListview()
     }
 
     override fun onItemDelete(itemObjectId: String) {
@@ -121,6 +129,8 @@ class MainActivity : AppCompatActivity(), ItemRowListener {
         val itemReference = mDatabase.child("todo_item").child(itemObjectId)
         //deletion can be done via removeValue() method
         itemReference.removeValue()
+
+        refreshListview()
     }
 
 }
