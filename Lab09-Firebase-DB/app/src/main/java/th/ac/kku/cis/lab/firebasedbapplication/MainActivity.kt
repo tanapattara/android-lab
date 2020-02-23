@@ -31,19 +31,15 @@ class MainActivity : AppCompatActivity(), ItemRowListener {
         mDatabase = FirebaseDatabase.getInstance().reference
         listViewItems = findViewById<View>(R.id.items_list) as ListView
 
-        fab.setOnClickListener { view ->
-            addNewItemDialog()
-        }
-
-        refreshListview()
-    }
-
-    private fun refreshListview(){
-        mDatabase = FirebaseDatabase.getInstance().reference
         toDoItemList = mutableListOf<ToDo>()
         adapter = ToDoItemAdapter(this, toDoItemList!!)
         listViewItems!!.setAdapter(adapter)
         mDatabase.orderByKey().addListenerForSingleValueEvent(itemListener)
+
+        fab.setOnClickListener { view ->
+            addNewItemDialog()
+        }
+
     }
 
     var itemListener: ValueEventListener = object : ValueEventListener {
@@ -78,9 +74,9 @@ class MainActivity : AppCompatActivity(), ItemRowListener {
                 todoItem.todoText = map.get("todoText") as String?
                 toDoItemList!!.add(todoItem);
             }
+
+            adapter.notifyDataSetChanged()
         }
-        //alert adapter that has changed and update
-        adapter.notifyDataSetChanged()
     }
 
     //Add new item to DB
@@ -109,28 +105,30 @@ class MainActivity : AppCompatActivity(), ItemRowListener {
             Toast.makeText(this,
                 "Item saved with ID " + todoItem.objectId, Toast.LENGTH_SHORT).show()
 
-            //refresh listview
-            refreshListview()
+            toDoItemList!!.add(todoItem);
+            adapter.notifyDataSetChanged()
         }
         alert.show()
     }
 
-    override fun modifyItemState(itemObjectId: String, isDone: Boolean) {
+    override fun modifyItemState(itemObjectId: String, index: Int, isDone: Boolean) {
         //get child reference in database via the ObjectID
         val itemReference = mDatabase.child("todo_item").child(itemObjectId)
         //set new value
         itemReference.child("done").setValue(isDone);
 
-        refreshListview()
+        toDoItemList!!.get(index).done = isDone
+        adapter.notifyDataSetChanged()
     }
 
-    override fun onItemDelete(itemObjectId: String) {
+    override fun onItemDelete(itemObjectId: String, index: Int) {
         //get child reference in database via the ObjectID
         val itemReference = mDatabase.child("todo_item").child(itemObjectId)
         //deletion can be done via removeValue() method
         itemReference.removeValue()
 
-        refreshListview()
+        toDoItemList!!.removeAt(index)
+        adapter.notifyDataSetChanged()
     }
 
 }

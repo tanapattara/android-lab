@@ -40,11 +40,11 @@ class ToDoItemAdapter(context: Context, toDoItemList: MutableList<ToDo>) : BaseA
 
         //add button listenner
         vh.isDone.setOnClickListener {
-            rowListener.modifyItemState(objectId, !done)
+            rowListener.modifyItemState(objectId, position, !done)
         }
 
         vh.ibDeleteObject.setOnClickListener {
-            rowListener.onItemDelete(objectId)
+            rowListener.onItemDelete(objectId, position)
         }
         return view
     }
