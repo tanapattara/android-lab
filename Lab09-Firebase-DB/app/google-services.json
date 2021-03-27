@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "934117801535",
+    "firebase_url": "https://fir-e185c-default-rtdb.firebaseio.com",
+    "project_id": "fir-e185c",
+    "storage_bucket": "fir-e185c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:934117801535:android:777a2c0c5230432ca5c28a",
+        "android_client_info": {
+          "package_name": "th.ac.kku.cis.lab.firebasedbapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "934117801535-9pof6g4ieh54p5ejod0toss9dq5h5ejl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcRBFDdHVkQ0w1raHc_meAQFvn7YqAQyQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "934117801535-9pof6g4ieh54p5ejod0toss9dq5h5ejl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-## Add neccesary Permissions
+## Add necessary Permissions
 
 add uses-permission in `AndroidManifest.xml`
 

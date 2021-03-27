@@ -20,6 +20,20 @@ class MainActivity : AppCompatActivity(), ItemRowListener {
     lateinit var adapter: ToDoItemAdapter
     private var listViewItems: ListView? = null
 
+    var itemListener: ValueEventListener = object : ValueEventListener {
+
+        override fun onDataChange(dataSnapshot: DataSnapshot) {
+            // call function
+            addDataToList(dataSnapshot)
+        }
+
+        override fun onCancelled(databaseError: DatabaseError) {
+            // Getting Item failed, display log a message
+            Log.w("MainActivity", "loadItem:onCancelled", databaseError.toException())
+        }
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,7 +47,7 @@ class MainActivity : AppCompatActivity(), ItemRowListener {
 
         toDoItemList = mutableListOf<ToDo>()
         adapter = ToDoItemAdapter(this, toDoItemList!!)
-        listViewItems!!.setAdapter(adapter)
+        listViewItems!!.adapter = adapter
         mDatabase.orderByKey().addListenerForSingleValueEvent(itemListener)
 
         fab.setOnClickListener { view ->
@@ -42,18 +56,6 @@ class MainActivity : AppCompatActivity(), ItemRowListener {
 
     }
 
-    var itemListener: ValueEventListener = object : ValueEventListener {
-
-        override fun onDataChange(dataSnapshot: DataSnapshot) {
-            // call function
-            addDataToList(dataSnapshot)
-        }
-
-        override fun onCancelled(databaseError: DatabaseError) {
-            // Getting Item failed, display log a message
-            Log.w("MainActivity", "loadItem:onCancelled", databaseError.toException())
-        }
-    }
 
     private fun addDataToList(dataSnapshot: DataSnapshot) {
         val items = dataSnapshot.children.iterator()
