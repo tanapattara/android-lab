@@ -13,7 +13,6 @@ import android.os.Bundle
 import android.text.format.DateUtils
 import android.widget.RemoteViews
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -36,13 +35,18 @@ class MainActivity : AppCompatActivity() {
         notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         button.setOnClickListener {
-            callNotification()
+            callExpandNotification()
+
+        }
+
+        button2.setOnClickListener{
+            callSimpleNotification()
         }
     }
     /*
     create simple notification
      */
-    private fun sendNotification() {
+    private fun callSimpleNotification() {
         val intents = arrayOfNulls<Intent>(2)
         intents[0] = Intent.makeMainActivity(
             ComponentName(
@@ -74,7 +78,7 @@ class MainActivity : AppCompatActivity() {
     /*
     create collapse and expand Notification
      */
-    private fun callNotification(){
+    private fun callExpandNotification(){
         //set expanded view
         var expandedView = RemoteViews(packageName,R.layout.view_expanded_notification)
         expandedView.setTextViewText(R.id.timestamp, DateUtils.formatDateTime(this, System.currentTimeMillis(), DateUtils.FORMAT_SHOW_TIME));
